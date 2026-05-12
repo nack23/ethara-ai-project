@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Analytics Dashboard</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#071b3b;
+
+    min-height:100vh;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+    padding:20px;
+}
+
+/* Background */
+
+body::before{
+
+    content:'';
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+
+    background-size:80px 40px;
+
+    z-index:-1;
+}
+
+/* Container */
+
+.container{
+
+    max-width:1300px;
+
+    margin:auto;
+}
+
+/* Header */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:40px;
+}
+
+.header h1{
+
+    font-size:42px;
+
+    font-weight:700;
+}
+
+/* Buttons */
+
+.top-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+}
+
+.btn{
+
+    padding:14px 28px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.dashboard-btn{
+
+    background:#ffffff1a;
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.dashboard-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#ffffff2a;
+}
+
+/* Cards */
+
+.analytics-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+
+    margin-bottom:45px;
+}
+
+.card{
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    border-radius:28px;
+
+    padding:30px;
+
+    backdrop-filter:blur(14px);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    background:rgba(255,255,255,0.1);
+}
+
+.card::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:rgba(255,255,255,0.05);
+
+    border-radius:50%;
+
+    top:-90px;
+    right:-90px;
+}
+
+.icon{
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.08);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.icon i{
+
+    font-size:30px;
+}
+
+.card h2{
+
+    font-size:40px;
+
+    margin-bottom:12px;
+}
+
+.card p{
+
+    color:#ddd;
+
+    font-size:16px;
+}
+
+/* Tables */
+
+.section{
+
+    margin-top:40px;
+}
+
+.section h3{
+
+    margin-bottom:20px;
+
+    font-size:28px;
+}
+
+.table-box{
+
+    overflow-x:auto;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+table th{
+
+    background:rgba(255,255,255,0.08);
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:15px;
+}
+
+table td{
+
+    padding:18px;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
+    color:#ddd;
+}
+
+/* Status */
+
+.status{
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:#fff;
+
+    color:#111;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    display:inline-block;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:15px;
+    }
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .header h1{
+
+        font-size:34px;
+    }
+
+    .top-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+    }
+
+    .btn{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .analytics-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .card{
+
+        padding:24px;
+    }
+
+    .card h2{
+
+        font-size:34px;
+    }
+
+    .section h3{
+
+        font-size:24px;
+    }
+
+    table th,
+    table td{
+
+        padding:14px;
+        font-size:14px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Analytics Dashboard</h1>
+
+        <div class="top-buttons">
+
+            <a
+            href="/dashboard"
+            class="btn dashboard-btn">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+            <a
+            href="/project-management"
+            class="btn dashboard-btn">
+
+                <i class="fa-solid fa-folder"></i>
+
+                Projects
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Analytics Cards -->
+
+    <div class="analytics-grid">
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-list-check"></i>
+
+            </div>
+
+            <h2>
+
+                <%= totalTasks %>
+
+            </h2>
+
+            <p>Total Tasks</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-spinner"></i>
+
+            </div>
+
+            <h2>
+
+                <%= completedTasks %>
+
+            </h2>
+
+            <p>Completed Tasks</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-clock"></i>
+
+            </div>
+
+            <h2>
+
+                <%= pendingTasks %>
+
+            </h2>
+
+            <p>Pending Tasks</p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">
+
+                <i class="fa-solid fa-triangle-exclamation"></i>
+
+            </div>
+
+            <h2>
+
+                <%= overdueTasks %>
+
+            </h2>
+
+            <p>Overdue Tasks</p>
+
+        </div>
+
+    </div>
+
+    <!-- Tasks Per User -->
+
+    <div class="section">
+
+        <h3>Tasks Per User</h3>
+
+        <div class="table-box">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>User</th>
+
+                        <th>Total Assigned</th>
+
+                        <th>Total Completed</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% users.forEach(user => { %>
+
+                        <tr>
+
+                            <td>
+
+                                <%= user.email %>
+
+                            </td>
+
+                            <td>
+
+                                <%= user.totalAssigned %>
+
+                            </td>
+
+                            <td>
+
+                                <%= user.totalCompleted %>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Tasks -->
+
+    <div class="section">
+
+        <h3>Recent Submitted Tasks</h3>
+
+        <div class="table-box">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Title</th>
+
+                        <th>Completed By</th>
+
+                        <th>Priority</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <% recentTasks.forEach(task => { %>
+
+                        <tr>
+
+                            <td>
+
+                                <%= task.title %>
+
+                            </td>
+
+                            <td>
+
+                                <%= task.completedBy %>
+
+                            </td>
+
+                            <td>
+
+                                <%= task.priority %>
+
+                            </td>
+
+                            <td>
+
+                                <span class="status">
+
+                                    Done
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+                    <% }) %>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

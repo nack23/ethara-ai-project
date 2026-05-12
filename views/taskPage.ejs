@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Task Management</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#071b3b;
+
+    min-height:100vh;
+
+    color:#fff;
+
+    overflow-x:hidden;
+
+    padding:20px;
+
+    position:relative;
+}
+
+/* Background */
+
+body::before{
+
+    content:'';
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+
+    background-size:80px 40px;
+
+    z-index:-1;
+}
+
+/* Container */
+
+.container{
+
+    max-width:1200px;
+
+    margin:auto;
+}
+
+/* Header */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:40px;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+}
+
+.header h1{
+
+    font-size:42px;
+
+    font-weight:700;
+}
+
+/* Top Buttons */
+
+.top-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+}
+
+/* Button */
+
+.btn{
+
+    padding:14px 26px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+.dashboard-btn{
+
+    background:#ffffff1a;
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.dashboard-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#ffffff2a;
+}
+
+.task-btn{
+
+    background:#fff;
+
+    color:#111;
+}
+
+.task-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#ececec;
+}
+
+/* Grid */
+
+.task-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
+}
+
+/* Card */
+
+.task-card{
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:25px;
+
+    padding:25px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+.task-card:hover{
+
+    transform:translateY(-5px);
+
+    background:rgba(255,255,255,0.1);
+}
+
+/* Glow */
+
+.task-card::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:180px;
+    height:180px;
+
+    background:rgba(255,255,255,0.05);
+
+    border-radius:50%;
+
+    top:-90px;
+    right:-90px;
+}
+
+/* Icon */
+
+.icon{
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,0.08);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.icon i{
+
+    font-size:28px;
+}
+
+/* Text */
+
+.task-card h2{
+
+    font-size:24px;
+
+    margin-bottom:15px;
+
+    word-break:break-word;
+}
+
+.task-card p{
+
+    color:#ddd;
+
+    line-height:1.8;
+
+    margin-bottom:12px;
+
+    word-break:break-word;
+}
+
+/* Status */
+
+.status{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    background:#fff;
+
+    color:#111;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-top:10px;
+}
+
+/* Empty */
+
+.empty{
+
+    text-align:center;
+
+    padding:90px 20px;
+
+    background:rgba(255,255,255,0.06);
+
+    border-radius:25px;
+}
+
+.empty h2{
+
+    margin-bottom:15px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    body{
+
+        padding:15px;
+    }
+
+    .header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .header h1{
+
+        font-size:34px;
+    }
+
+    .top-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+    }
+
+    .btn{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .task-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .task-card{
+
+        padding:20px;
+    }
+}
+
+.done-form{
+
+    margin-top:18px;
+}
+
+.done-form textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:18px;
+
+    outline:none;
+
+    resize:none;
+
+    margin-bottom:14px;
+
+    font-size:15px;
+}
+
+.done-btn{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.done-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#16a34a;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Header -->
+
+    <div class="header">
+
+        <h1>Task Management</h1>
+
+        <div class="top-buttons">
+
+            <a
+            href="/dashboard"
+            class="btn dashboard-btn">
+
+                <i class="fa-solid fa-house"></i>
+
+                Dashboard
+
+            </a>
+
+            <a
+            href="/project-management"
+            class="btn task-btn">
+
+                <i class="fa-solid fa-folder"></i>
+
+                Projects
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Tasks -->
+
+    <% if(projects.length > 0){ %>
+
+        <div class="task-grid">
+
+            <% projects.forEach(project => { %>
+
+                <div class="task-card">
+
+                    <div class="icon">
+
+                        <i class="fa-solid fa-list-check"></i>
+
+                    </div>
+
+                    <h2>
+
+                        <%= project.title %>
+
+                    </h2>
+
+                    <p>
+
+                        <strong>Description:</strong>
+
+                        <%= project.description %>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Admin:</strong>
+
+                        <%= project.admin.fullname %>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Due Date:</strong>
+
+                        <%= project.dueDate.toDateString() %>
+
+                    </p>
+
+                    <div class="status">
+
+                        <%= project.priority %>
+
+                    </div>
+<form
+action="/done-task"
+method="POST"
+class="done-form">
+  
+<input
+type="hidden"
+name="projectid"
+value="<%= project._id %>">
+
+    <input
+    type="hidden"
+    name="title"
+    value="<%= project.title %>">
+
+    <input
+    type="hidden"
+    name="description"
+    value="<%= project.description %>">
+
+    <input
+    type="hidden"
+    name="priority"
+    value="<%= project.priority %>">
+
+    <input
+    type="hidden"
+    name="admin"
+    value="<%= project.admin.fullname %>">
+
+    <textarea
+    name="taskMessage"
+    placeholder="Write what task you completed..."
+    required></textarea>
+
+    <button
+    type="submit"
+    class="done-btn">
+
+        <i class="fa-solid fa-check"></i>
+
+        Submit Task
+
+    </button>
+
+</form>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="empty">
+
+            <h2>No Tasks Assigned</h2>
+
+            <p>You currently have no assigned project tasks</p>
+
+        </div>
+
+    <% } %>
+
+</div>
+
+</body>
+
+</html>

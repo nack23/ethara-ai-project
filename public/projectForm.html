@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Create Project</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#071b3b;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    overflow-x:hidden;
+
+    position:relative;
+}
+
+/* Background */
+
+body::before{
+
+    content:'';
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+
+    background-size:80px 40px;
+
+    z-index:-1;
+}
+
+/* Form Box */
+
+.form-container{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    color:#fff;
+}
+
+/* Heading */
+
+.form-container h1{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    font-size:42px;
+}
+
+/* Input Box */
+
+.input-box{
+
+    margin-bottom:22px;
+}
+
+.input-box label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-size:16px;
+
+    font-weight:500;
+}
+
+.input-box input,
+.input-box textarea,
+.input-box select{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,0.12);
+
+    color:#fff;
+
+    font-size:15px;
+}
+
+.input-box textarea{
+
+    resize:none;
+
+    height:140px;
+}
+
+.input-box input::placeholder,
+.input-box textarea::placeholder{
+
+    color:#ddd;
+}
+
+/* Date */
+
+input[type="date"]{
+
+    color:#ddd;
+}
+
+/* Button */
+
+.create-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    color:#111;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.create-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#ececec;
+}
+
+/* Back */
+
+.back{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-size:15px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    body{
+
+        align-items:flex-start;
+
+        padding:15px;
+    }
+
+    .form-container{
+
+        padding:22px;
+    }
+
+    .form-container h1{
+
+        font-size:32px;
+    }
+
+    .input-box input,
+    .input-box textarea,
+    .input-box select{
+
+        padding:14px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h1>Create Project</h1>
+
+    <form
+    action="/create-project"
+    method="POST">
+
+        <!-- Title -->
+
+        <div class="input-box">
+
+            <label>
+
+                Project Title
+
+            </label>
+
+            <input
+            type="text"
+            name="title"
+            placeholder="Enter project title"
+            required>
+
+        </div>
+
+        <!-- Description -->
+
+        <div class="input-box">
+
+            <label>
+
+                Description
+
+            </label>
+
+            <textarea
+            name="description"
+            placeholder="Enter project description"
+            required></textarea>
+
+        </div>
+
+        <!-- Due Date -->
+
+        <div class="input-box">
+
+            <label>
+
+                Due Date
+
+            </label>
+
+            <input
+            type="date"
+            name="dueDate"
+            required>
+
+        </div>
+
+        <!-- Priority -->
+
+        <div class="input-box">
+
+            <label>
+
+                Priority
+
+            </label>
+
+            <select name="priority">
+
+                <option value="Low">
+
+                    Low
+
+                </option>
+
+                <option value="Medium">
+
+                    Medium
+
+                </option>
+
+                <option value="High">
+
+                    High
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- Button -->
+
+        <button
+        type="submit"
+        class="create-btn">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Create Project
+
+        </button>
+
+    </form>
+
+    <!-- Back -->
+
+    <a
+    href="/project-management"
+    class="back">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back to Projects
+
+    </a>
+
+</div>
+
+</body>
+
+</html>

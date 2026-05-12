@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ethara AI Dashboard</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:#071b3b;
+    color:#fff;
+    overflow-x:hidden;
+    overflow-y:visible;
+}
+
+/* Background Grid */
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size:80px 40px;
+    z-index:-1;
+}
+
+/* Navbar */
+
+.navbar{
+    width:100%;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+}
+
+.logo span{
+    color:#8cb8ff;
+}
+
+/* User Section */
+
+.user-section{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.username{
+    font-size:16px;
+    font-weight:500;
+    color:#fff;
+}
+
+.logout-btn{
+    padding:10px 22px;
+    border:none;
+    border-radius:40px;
+    background:#fff;
+    color:#111;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#ececec;
+    transform:translateY(-2px);
+}
+
+/* Main */
+
+.main{
+    width:100%;
+    padding:50px 20px 80px;
+}
+
+/* Hero */
+
+.hero{
+    max-width:1100px;
+    margin:auto;
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.hero h1{
+    font-size:52px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    color:#d8d8d8;
+    font-size:18px;
+    line-height:1.8;
+}
+
+/* Cards */
+
+.card-container{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.07);
+    border:1px solid rgba(255,255,255,0.12);
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    padding:35px 25px;
+    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    background:rgba(255,255,255,0.09);
+}
+
+/* Glow */
+
+.card::before{
+    content:'';
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50%;
+    top:-100px;
+    right:-100px;
+}
+
+/* Icon */
+
+.icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.icon i{
+    font-size:32px;
+}
+
+/* Card Content */
+
+.card h2{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#d9d9d9;
+    line-height:1.8;
+    font-size:15px;
+    margin-bottom:28px;
+}
+
+/* Buttons */
+
+.card a{
+    display:inline-block;
+    padding:12px 24px;
+    border-radius:40px;
+    text-decoration:none;
+    background:#fff;
+    color:#111;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.card a:hover{
+    background:#ececec;
+    transform:translateY(-2px);
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .navbar{
+        padding:15px 18px;
+        flex-direction:column;
+        gap:12px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .user-section{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:34px;
+        line-height:1.4;
+    }
+
+    .hero p{
+        font-size:15px;
+        line-height:1.8;
+    }
+
+    .main{
+        padding:35px 15px 40px;
+    }
+
+    .card-container{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:28px 20px;
+    }
+
+    .card h2{
+        font-size:24px;
+    }
+
+    .icon{
+        width:65px;
+        height:65px;
+    }
+
+    .icon i{
+        font-size:28px;
+    }
+
+    .logout-btn{
+        padding:9px 18px;
+        font-size:14px;
+    }
+
+    .username{
+        font-size:14px;
+        text-align:center;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<div class="navbar">
+
+    <div class="logo">
+        Ethara <span>AI</span>
+    </div>
+
+    <div class="user-section">
+
+        <div class="username">
+            <i class="fa-solid fa-user"></i>
+            Welcome,
+            <%= user.fullname %>
+        </div>
+
+        <a href="/logout" class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+    <!-- Hero -->
+
+    <div class="hero">
+
+        <h1>Project & Task Management</h1>
+
+        <p>
+            Manage projects, assign tasks, track progress,
+            monitor overdue tasks, and collaborate with your team
+            using Ethara AI.
+        </p>
+
+    </div>
+
+    <!-- Cards -->
+
+    <div class="card-container">
+
+        <!-- Project Management -->
+
+        <div class="card">
+
+            <div class="icon">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+
+            <h2>Project Management</h2>
+
+            <p>
+                Create projects, manage admins,
+                add or remove members,
+                and organize your team workflow efficiently.
+            </p>
+
+            <a href="/project-management">Open</a>
+
+        </div>
+
+        <!-- Task Management -->
+
+        <div class="card">
+
+            <div class="icon">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+
+            <h2>Task Management</h2>
+
+            <p>
+                Create tasks, assign users,
+                update status, set priorities,
+                and manage deadlines with ease.
+            </p>
+
+            <a href="/task-management">Open</a>
+
+        </div>
+
+        <!-- Dashboard Analytics -->
+
+        <div class="card">
+
+            <div class="icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+
+            <h2>Dashboard Analytics</h2>
+
+            <p>
+                View total tasks, overdue tasks,
+                task progress, user performance,
+                and detailed project insights.
+            </p>
+
+            <a href="/analytics-dashboard">Open</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
